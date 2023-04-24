@@ -66,7 +66,38 @@ void NewStudent()
 
 int main()
 {
+	int choice = 1;
 
+	while (true)
+	{
+
+		std::cout << "1. Add new student \n2. Get student grade \nAnything else: Quit" << std::endl;
+		std::cin >> choice;
+
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+
+		if (choice == 1)
+		{
+			NewStudent();
+		}
+		else if (choice == 2)
+		{
+			std::string Name;
+			std::cout << "Name: ";
+			std::cin >> Name;
+			std::cout << GetStudentGrade(Name) << std::endl;
+		}
+		else
+		{
+			break;
+		}
+
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+	}
 
 	return 0;
 }
