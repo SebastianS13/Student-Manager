@@ -1,26 +1,6 @@
 #include <iostream>
 #include <fstream>
 
-class Pupil
-{
-public:
-	void SetGrade(char NewGrade)
-	{
-		Grade = NewGrade;
-	}
-
-	void SetNames(std::string NewName, std::string NewSurname)
-	{
-		Name = NewName;
-		Surname = NewSurname;
-	}
-
-private:
-	char Grade;
-	std::string Name;
-	std::string Surname;
-};
-
 std::string GetStudentGrade(std::string Name)
 {
 	std::ifstream Students;
