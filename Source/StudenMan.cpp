@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <ios>
 
 std::string GetStudentGrade(std::string Name)
 {
@@ -16,7 +17,7 @@ std::string GetStudentGrade(std::string Name)
 		{
 			if (CurrentName == Name)
 			{
-				return Name + "'s grade is: " + CurrentGrade;
+				std::cout << CurrentName + " " + CurrentSurname + "'s grade is: " + CurrentGrade << std::endl;
 			}
 		}
 	}
@@ -47,9 +48,7 @@ void NewStudent()
 	std::cout << "Grade: ";
 	std::cin >> Grade;
 
-
-	std::ofstream Students;
-	Students.open("Student.dat");
+	std::ofstream Students("Student.dat", std::ios::app);
 
 	if (Students.is_open())
 	{
@@ -64,6 +63,21 @@ void NewStudent()
 
 }
 
+void ClearStudents()
+{
+	std::ofstream Students("Student.dat");	
+	
+	if (Students.is_open())
+	{
+		Students << "";
+	}
+	else
+	{
+		std::cout << "UNABLE TO OPEN 'Students.dat'" << std::endl;
+	}
+	Students.close();
+}
+
 int main()
 {
 	int choice = 1;
@@ -71,7 +85,7 @@ int main()
 	while (true)
 	{
 
-		std::cout << "1. Add new student \n2. Get student grade \nAnything else: Quit" << std::endl;
+		std::cout << "1. Add new student \n2. Get student grade \n3. Clear all students \nAnything else: Quit" << std::endl;
 		std::cin >> choice;
 
 		std::cout << std::endl;
@@ -88,6 +102,23 @@ int main()
 			std::cout << "Name: ";
 			std::cin >> Name;
 			std::cout << GetStudentGrade(Name) << std::endl;
+		}
+		else if (choice == 3)
+		{
+			std::cout << "are you sure? (y/n)" << std::endl;
+
+			char AreYouSureInput = 'n';
+			std::cin >> AreYouSureInput;
+
+			if (AreYouSureInput == 'y')
+			{
+				std::cout << "Clearing students" << std::endl;
+				ClearStudents();
+			}
+			else
+			{
+				std::cout << "Clearing cancelled, No students deleted" << std::endl;
+			}
 		}
 		else
 		{
